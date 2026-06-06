@@ -5,4 +5,8 @@
 #
 # Hint:
 #   from .data import RECORDS
-#   from .reports import format_report
+#   from .reports import format_reportfrom .data import RECORDS
+from .data import RECORDS
+from .reports import format_report
+
+
