@@ -23,3 +23,30 @@ def passing_students(records: list[dict], threshold: float = 60.0) -> list[str]:
     """Return names whose average >= threshold, sorted alphabetically."""
     # TODO: implement
     pass
+    def average_per_student(records):
+    totals = {}
+    counts = {}
+    for record in records:
+        name = record["name"]
+        totals[name] = totals.get(name, 0) + record["score"]
+        counts[name] = counts.get(name, 0) + 1
+    averages = {}
+    for name in totals:
+        averages[name] = round(totals[name] / counts[name], 2)
+    return averages
+def subjects_offered(records):
+    subjects = set()
+    for record in records:
+        subjects.add(record["subject"])
+    return subjects
+def top_scorer(records):
+    averages = average_per_student(records)
+    top_name = max(averages, key=averages.get)
+    return (top_name, averages[top_name])
+def passing_students(records, threshold=60.0):
+    averages = average_per_student(records)
+    passed = []
+    for name, avg in averages.items():
+        if avg >= threshold:
+            passed.append(name)
+    return sorted(passed)
